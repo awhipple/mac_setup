@@ -1,1 +1,1 @@
-# mac_setup
+Set git up first
