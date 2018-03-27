@@ -2,6 +2,7 @@ set -x
 
 #Setup Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update
 brew doctor
 
 # Generate SSH key
@@ -20,12 +21,12 @@ cat ~/.ssh/id_rsa.pub
 echo ""
 
 #Create Projects Directory
-mkdir projects
+mkdir ~/projects
 
 # Configure bash profile
 echo "if [ -f ~/.bashrc ]; then
     source ~/.bashrc
-fi" > ~/.bash_profile
+fi" >> ~/.bash_profile
 touch ~/.bashrc
 
 # Configure git
@@ -57,6 +58,12 @@ gem install bundler
 echo "
 #rbenv
 export PATH=\"~/.rbenv/shims:$PATH\"" >> ~/.bashrc
+
+#Install Node tools
+brew install npm
+
+#Install Postgres
+brew install postgresql
 
 #Setup symlinks
 # sudo ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom
