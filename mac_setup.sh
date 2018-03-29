@@ -1,12 +1,17 @@
 set -x
 
+echo "Input full name: "
+read NAME
+echo "Input email address: "
+read EMAIL
+
 #Setup Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew doctor
 
 # Generate SSH key
-ssh-keygen -t rsa -b 4096 -C "awhipple@newrelic.com"
+ssh-keygen -t rsa -b 4096 -C $EMAIL
 eval "$(ssh-agent -s)"
 ssh-add -K ~/.ssh/id_rsa
 echo "Host *
@@ -30,8 +35,8 @@ fi" >> ~/.bash_profile
 touch ~/.bashrc
 
 # Configure git
-git config --global user.email "awhipple@newrelic.com"
-git config --global user.name "Aaron Whipple"
+git config --global user.email $EMAIL
+git config --global user.name $NAME
 
 git config --global alias.co checkout
 git config --global alias.br branch
@@ -61,6 +66,7 @@ export PATH=\"~/.rbenv/shims:$PATH\"" >> ~/.bashrc
 
 #Install Node tools
 brew install npm
+npm i npm
 
 #Install Postgres
 brew install postgresql
