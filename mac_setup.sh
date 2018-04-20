@@ -70,6 +70,7 @@ npm i npm
 
 #Install Postgres
 brew install postgresql
+gem install lunchy
 
 #Setup symlinks
 # sudo ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom
